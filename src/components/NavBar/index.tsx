@@ -6,7 +6,7 @@ function NavBar(){
             {/* menu left */}
         <div className='flex'>
             {/* home icon */}
-            <p className='mr-[32px]'>HelloTutor</p>
+            <p className='mr-[32px]'><Link href="/">HelloTutor</Link></p>
             {/* menu list */}
             <ul className='flex gap-x-6 min-w-[290px]'>
                 <li><Link href="/question">질문하기</Link></li>
