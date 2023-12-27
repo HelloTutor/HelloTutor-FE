@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang='ko'>
       <body className={inter.className}>
-        <header className='max-w-screen-lg mx-auto'>
+        <header className='max-w-[970px] mx-auto'>
           <NavBar />
         </header>
         
