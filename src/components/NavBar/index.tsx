@@ -16,8 +16,8 @@ function NavBar(){
         </div>
         {/* menu right - sign in/up button */}
         <div className='flex gap-x-6 min-w-[146px]'>
-            <button>로그인</button>
-            <button>회원가입</button>
+            <Link href="/signin">로그인</Link>
+            <Link href="/signup">회원가입</Link>
         </div>
         </nav>
     )
