@@ -1,13 +1,13 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import NavBar from '@/components/NavBar';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import NavBar from "@/components/NavBar";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'HelloTutor',
-  description: 'Learn from the best tutors in the world.',
+  title: "HelloTutor",
+  description: "Learn from the best tutors in the world.",
 };
 
 export default function RootLayout({
@@ -16,14 +16,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='ko'>
-      <body className={inter.className}>
-        <header className='max-w-[970px] mx-auto'>
+    <html lang="ko">
+      <body className={`${inter.className} max-w-[1200px] mx-auto`}>
+        <header>
           <NavBar />
         </header>
-        
+
         {children}
-        </body>
+      </body>
     </html>
   );
 }
