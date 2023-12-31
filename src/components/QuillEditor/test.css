@@ -1,0 +1,15 @@
+.test {
+  color: red !important;
+
+  /* background-color: red; */
+  width: 100px;
+  height: 100px;
+}
+
+.test2 {
+  color: red !important;
+}
+
+/* span {
+  color: red !important;
+} */
