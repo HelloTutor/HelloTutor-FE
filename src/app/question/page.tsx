@@ -7,18 +7,22 @@ import SubjectSideBar from '@/components/SubjectSideBar';
 const navItemMap = [
   {
     navTitle: '전체',
+    fontSize: 'text-xl',
     navi() {
       console.log('전체');
     },
   },
   {
     navTitle: '미해결',
+    fontSize: 'text-xl',
+
     navi() {
       console.log('미해결');
     },
   },
   {
     navTitle: '해결',
+    fontSize: 'text-xl',
     navi() {
       console.log('해결');
     },
