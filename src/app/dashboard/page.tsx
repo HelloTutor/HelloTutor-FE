@@ -1,14 +1,9 @@
-'use client';
-
-import QuestionWriting from '@/components/QuestionWriting/QuestionWriting';
-import React, { useState } from 'react';
+import SearchForm from '@/components/SearchForm';
 
 export default function Dashboard() {
-  const [html, setHtml] = useState('');
-
   return (
     <div>
-      <QuestionWriting setHtml={setHtml} html={html} />
+      <SearchForm />
     </div>
   );
 }
