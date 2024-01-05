@@ -8,7 +8,7 @@ interface TutorDataTypes {
   password: string;
   confirm_password: string;
   name: string;
-  subject: string;
+  subjects: string[];
 }
 
 export default function Tutor() {
@@ -17,16 +17,8 @@ export default function Tutor() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<TutorDataTypes>({
-    mode: "onChange",
-    defaultValues: {
-      email: "",
-      password: "",
-      confirm_password: "",
-      name: "",
-      subject: "",
-    },
-  });
+  } = useForm<TutorDataTypes>();
+
   const onSubmitHandler: SubmitHandler<TutorDataTypes> = (data) =>
     console.log(data);
 
@@ -126,10 +118,10 @@ export default function Tutor() {
               {subjectKoEn.map((subject) => (
                 <div key={subject.en}>
                   <input
-                    type="radio"
+                    type="checkbox"
                     id={subject.en}
                     value={subject.en}
-                    {...register("subject")}
+                    {...register("subjects")}
                   />
                   <label htmlFor={subject.en}>{subject.ko}</label>
                 </div>
