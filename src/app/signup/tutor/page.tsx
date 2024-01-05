@@ -124,6 +124,7 @@ export default function Tutor() {
                     id={subject.en}
                     value={subject.en}
                     {...register("subjects")}
+                    className="mr-1"
                   />
                   <label htmlFor={subject.en}>{subject.ko}</label>
                 </div>
