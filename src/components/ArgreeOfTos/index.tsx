@@ -63,14 +63,16 @@ export default function AgreeOfTos({ register, error }: AgreeOfTosProps) {
               setTerms(e.target.checked);
             }}
           />
-          <p>(필수) 이용약관 동의</p>
-          <button
-            className="text-blue-500"
-            type="button"
-            onClick={() => setModalOpen(true)}
-          >
-            보기
-          </button>
+          <div className="w-full flex justify-between">
+            <p>(필수) 이용약관 동의</p>
+            <button
+              className="text-blue-500"
+              type="button"
+              onClick={() => setModalOpen(true)}
+            >
+              보기
+            </button>
+          </div>
         </div>
         <div className="flex items-center gap-x-2">
           <input
@@ -81,10 +83,15 @@ export default function AgreeOfTos({ register, error }: AgreeOfTosProps) {
               setPrivacy(e.target.checked);
             }}
           />
-          <p>(필수) 개인정보 수집 및 이용동의</p>
-          <button className="text-blue-500" onClick={() => setModalOpen(true)}>
-            보기
-          </button>
+          <div className="w-full flex justify-between">
+            <p className="block">(필수) 개인정보 수집 및 이용동의</p>
+            <button
+              className="text-blue-500"
+              onClick={() => setModalOpen(true)}
+            >
+              보기
+            </button>
+          </div>
         </div>
         <div className="flex items-center gap-x-2">
           <input
