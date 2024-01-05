@@ -1,7 +1,8 @@
 "use client";
-import { subjectArr } from "@/constants/subject";
+import { subjectArr, subjectKoEn } from "@/constants/subject";
 import { ArrowRightCircleIcon } from "@heroicons/react/24/outline";
 import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 import Slider, { Settings } from "react-slick";
 export default function Home() {
   const settings: Settings = {
@@ -27,11 +28,11 @@ export default function Home() {
       <div className=" bg-black w-full h-72" />
       {/* 과목 이미지 */}
       <div className="flex gap-x-6 my-16 justify-center">
-        {subjectArr.map((subject) => (
-          <div key={subject}>
+        {subjectKoEn.map((subject) => (
+          <Link key={subject.en} href={`/find-tutor?subject=${subject.en}`}>
             <div className="bg-black w-[123px] h-[123px]" />
-            <p className="mt-2 text-center">{subject}</p>
-          </div>
+            <p className="mt-2 text-center">{subject.ko}</p>
+          </Link>
         ))}
       </div>
       {/* 지금 인기있는 tutor */}
