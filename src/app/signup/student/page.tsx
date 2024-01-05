@@ -120,8 +120,7 @@ export default function Student() {
 
           <SubmitButton title="가입하기" />
         </form>
-        <div className="my-4 flex flex-col gap-y-4  items-center">
-          <SubmitButton title="카카오톡으로 가입하기" />
+        <div className="my-12 flex flex-col gap-y-4  items-center">
           <SubmitButton title="구글로 가입하기" />
         </div>
       </div>
