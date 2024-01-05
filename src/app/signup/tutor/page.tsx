@@ -1,14 +1,16 @@
 "use client";
+import AgreeOfTos from "@/components/ArgreeOfTos";
 import SubmitButton from "@/components/SubmitButton";
 import { subjectKoEn } from "@/constants/subject";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-interface TutorDataTypes {
+export interface TutorDataTypes {
   email: string;
   password: string;
   confirm_password: string;
   name: string;
   subjects: string[];
+  policy: boolean;
 }
 
 export default function Tutor() {
@@ -131,6 +133,8 @@ export default function Tutor() {
 
           {/* 휴대전화 인증*/}
 
+          {/* 약관 동의 */}
+          <AgreeOfTos register={register} error={errors} />
           <SubmitButton title="가입하기" />
         </form>
       </div>
