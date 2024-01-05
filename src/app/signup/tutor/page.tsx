@@ -1,14 +1,16 @@
 "use client";
+import AgreeOfTos from "@/components/ArgreeOfTos";
 import SubmitButton from "@/components/SubmitButton";
 import { subjectKoEn } from "@/constants/subject";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-interface TutorDataTypes {
+export interface TutorDataTypes {
   email: string;
   password: string;
   confirm_password: string;
   name: string;
-  subject: string;
+  subjects: string[];
+  policy: boolean;
 }
 
 export default function Tutor() {
@@ -17,16 +19,8 @@ export default function Tutor() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<TutorDataTypes>({
-    mode: "onChange",
-    defaultValues: {
-      email: "",
-      password: "",
-      confirm_password: "",
-      name: "",
-      subject: "",
-    },
-  });
+  } = useForm<TutorDataTypes>();
+
   const onSubmitHandler: SubmitHandler<TutorDataTypes> = (data) =>
     console.log(data);
 
@@ -39,7 +33,7 @@ export default function Tutor() {
           onSubmit={handleSubmit(onSubmitHandler)}
         >
           <div>
-            <label className="ml-2 mb-3" htmlFor="email">
+            <label className="mb-3" htmlFor="email">
               이메일(ID)
             </label>
             <input
@@ -59,7 +53,7 @@ export default function Tutor() {
             </p>
           </div>
           <div>
-            <label className="ml-2 mb-3" htmlFor="password">
+            <label className="mb-3" htmlFor="password">
               비밀번호
             </label>
             <input
@@ -84,7 +78,7 @@ export default function Tutor() {
             </p>
           </div>
           <div>
-            <label className="ml-2 mb-3" htmlFor="confirm_password">
+            <label className=" mb-3" htmlFor="confirm_password">
               비밀번호 확인
             </label>
             <input
@@ -106,7 +100,7 @@ export default function Tutor() {
             </p>
           </div>
           <div>
-            <label className="ml-2 mb-3">이름</label>
+            <label className=" mb-3">이름</label>
             <input
               id="name"
               type="text"
@@ -121,15 +115,16 @@ export default function Tutor() {
             </p>
           </div>
           <div>
-            <label className="ml-2">활동분야</label>
+            <label>활동분야</label>
             <div className="flex gap-x-4 justify-center pt-3">
               {subjectKoEn.map((subject) => (
                 <div key={subject.en}>
                   <input
-                    type="radio"
+                    type="checkbox"
                     id={subject.en}
                     value={subject.en}
-                    {...register("subject")}
+                    {...register("subjects")}
+                    className="mr-1"
                   />
                   <label htmlFor={subject.en}>{subject.ko}</label>
                 </div>
@@ -138,7 +133,27 @@ export default function Tutor() {
           </div>
 
           {/* 휴대전화 인증*/}
+          <div>
+            <p>휴대전화 인증</p>
+            <div className="flex gap-x-4 my-2">
+              <input
+                type="text"
+                placeholder="전화번호 입력"
+                className="border-2 border-[#d9d9d9] rounded-lg h-[60px] px-4 w-[400px] shadow-md"
+              />
+              <button className="border-2 border-[#d9d9d9] rounded-lg h-[60px] px-4 w-[200px] shadow-md">
+                인증번호 받기
+              </button>
+            </div>
+            <input
+              type="text"
+              placeholder="인증번호 입력"
+              className="border-2 border-[#d9d9d9] rounded-lg h-[60px] px-4 w-[400px] shadow-md"
+            />
+          </div>
 
+          {/* 약관 동의 */}
+          <AgreeOfTos register={register} error={errors} />
           <SubmitButton title="가입하기" />
         </form>
       </div>
