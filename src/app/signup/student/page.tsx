@@ -1,12 +1,14 @@
 "use client";
+import AgreeOfTos from "@/components/ArgreeOfTos";
 import SubmitButton from "@/components/SubmitButton";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-interface UserDataTypes {
+export interface UserDataTypes {
   email: string;
   password: string;
   confirm_password: string;
   name: string;
+  policy: boolean;
 }
 export default function Student() {
   const {
@@ -14,15 +16,7 @@ export default function Student() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<UserDataTypes>({
-    mode: "onChange",
-    defaultValues: {
-      email: "",
-      password: "",
-      confirm_password: "",
-      name: "",
-    },
-  });
+  } = useForm<UserDataTypes>({ mode: "onChange" });
   const onSubmitHandler: SubmitHandler<UserDataTypes> = (data) =>
     console.log(data);
 
@@ -118,10 +112,12 @@ export default function Student() {
             </p>
           </div>
 
+          {/* 약관 동의 */}
+          <AgreeOfTos register={register} error={errors} />
+
           <SubmitButton title="가입하기" />
         </form>
-        <div className="my-4 flex flex-col gap-y-4  items-center">
-          <SubmitButton title="카카오톡으로 가입하기" />
+        <div className="my-12 flex flex-col gap-y-4  items-center">
           <SubmitButton title="구글로 가입하기" />
         </div>
       </div>

@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function SubjectSideBar({ title }: { title: string }) {
   return (
-    <section>
+    <section className=' min-w-[174px] text-center'>
       <p className='ht-lg-title my-[42px]'>{title}</p>
 
       <ul className='flex flex-col gap-y-4 text-center'>
