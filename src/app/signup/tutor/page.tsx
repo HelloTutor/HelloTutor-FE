@@ -132,26 +132,6 @@ export default function Tutor() {
             </div>
           </div>
 
-          {/* 휴대전화 인증*/}
-          <div>
-            <p>휴대전화 인증</p>
-            <div className="flex gap-x-4 my-2">
-              <input
-                type="text"
-                placeholder="전화번호 입력"
-                className="border-2 border-[#d9d9d9] rounded-lg h-[60px] px-4 w-[400px] shadow-md"
-              />
-              <button className="border-2 border-[#d9d9d9] rounded-lg h-[60px] px-4 w-[200px] shadow-md">
-                인증번호 받기
-              </button>
-            </div>
-            <input
-              type="text"
-              placeholder="인증번호 입력"
-              className="border-2 border-[#d9d9d9] rounded-lg h-[60px] px-4 w-[400px] shadow-md"
-            />
-          </div>
-
           {/* 약관 동의 */}
           <AgreeOfTos register={register} error={errors} />
           <SubmitButton title="가입하기" />
