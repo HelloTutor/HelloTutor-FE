@@ -1,15 +1,14 @@
-import { UserDataTypes } from "@/app/signup/student/page";
-import { TutorDataTypes } from "@/app/signup/tutor/page";
 import { useEffect, useState } from "react";
-import { FieldErrors } from "react-hook-form";
 
-interface AgreeOfTosProps {
-  register?: any;
-  error: FieldErrors<TutorDataTypes | UserDataTypes>;
-}
-
-export default function AgreeOfTos({ register, error }: AgreeOfTosProps) {
-  const [policy, setPolicy] = useState(false);
+export default function AgreeOfTos({
+  setPolicy,
+  policy,
+  policyError,
+}: {
+  setPolicy: React.Dispatch<React.SetStateAction<boolean>>;
+  policy: boolean;
+  policyError: boolean;
+}) {
   // 필수동의, 개인정보 동의, 14세 이상 동의 체크박스 상태 관리
   const [terms, setTerms] = useState(false);
   const [privacy, setPrivacy] = useState(false);
@@ -41,17 +40,14 @@ export default function AgreeOfTos({ register, error }: AgreeOfTosProps) {
           <input
             type="checkbox"
             checked={policy}
-            {...register("policy", {
-              required: "필수 동의 사항입니다.",
-              onChange: () => {
-                handleAllCheck();
-                setPolicy(!policy);
-              },
-            })}
             className="w-[20px] h-[20px] border-2 border-[#d9d9d9] rounded-lg"
+            onChange={() => {
+              handleAllCheck();
+              setPolicy(!policy);
+            }}
           />
           <p>전체동의</p>
-          <p className="text-red-500">{error?.policy?.message}</p>
+          {policyError && <p className="text-red-500">필수 동의 사항입니다.</p>}
         </div>
         <hr />
         <div className="flex items-center gap-x-2">
@@ -63,10 +59,10 @@ export default function AgreeOfTos({ register, error }: AgreeOfTosProps) {
               setTerms(e.target.checked);
             }}
           />
-          <div className="w-full flex justify-between">
+          <div className=" flex ">
             <p>(필수) 이용약관 동의</p>
             <button
-              className="text-blue-500"
+              className="text-blue-500 ml-2"
               type="button"
               onClick={() => setModalOpen(true)}
             >
@@ -83,17 +79,17 @@ export default function AgreeOfTos({ register, error }: AgreeOfTosProps) {
               setPrivacy(e.target.checked);
             }}
           />
-          <div className="w-full flex justify-between">
-            <p className="block">(필수) 개인정보 수집 및 이용동의</p>
+          <div className="flex ">
+            <p>(필수) 개인정보 수집 및 이용동의</p>
             <button
-              className="text-blue-500"
+              className="text-blue-500 ml-2"
               onClick={() => setModalOpen(true)}
             >
               보기
             </button>
           </div>
         </div>
-        <div className="flex items-center gap-x-2">
+        <div className="w-full flex items-center gap-x-2">
           <input
             type="checkbox"
             checked={age}
