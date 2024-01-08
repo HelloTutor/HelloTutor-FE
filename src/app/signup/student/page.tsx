@@ -1,6 +1,7 @@
 "use client";
 import AgreeOfTos from "@/components/ArgreeOfTos";
 import SubmitButton from "@/components/SubmitButton";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 export interface UserDataTypes {
@@ -8,7 +9,6 @@ export interface UserDataTypes {
   password: string;
   confirm_password: string;
   name: string;
-  policy: boolean;
 }
 export default function Student() {
   const {
@@ -17,8 +17,17 @@ export default function Student() {
     watch,
     formState: { errors },
   } = useForm<UserDataTypes>({ mode: "onChange" });
-  const onSubmitHandler: SubmitHandler<UserDataTypes> = (data) =>
+
+  const [policy, setPolicy] = useState(false);
+  const [policyError, setPolicyError] = useState(false);
+
+  const onSubmitHandler: SubmitHandler<UserDataTypes> = (data) => {
+    if (!policy) {
+      setPolicyError(true);
+      return;
+    }
     console.log(data);
+  };
 
   return (
     <>
@@ -113,7 +122,11 @@ export default function Student() {
           </div>
 
           {/* 약관 동의 */}
-          <AgreeOfTos register={register} error={errors} />
+          <AgreeOfTos
+            policy={policy}
+            setPolicy={setPolicy}
+            policyError={policyError}
+          />
 
           <SubmitButton title="가입하기" />
         </form>

@@ -2,6 +2,7 @@
 import AgreeOfTos from "@/components/ArgreeOfTos";
 import SubmitButton from "@/components/SubmitButton";
 import { subjectKoEn } from "@/constants/subject";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 export interface TutorDataTypes {
@@ -10,7 +11,6 @@ export interface TutorDataTypes {
   confirm_password: string;
   name: string;
   subjects: string[];
-  policy: boolean;
 }
 
 export default function Tutor() {
@@ -19,11 +19,18 @@ export default function Tutor() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<TutorDataTypes>();
+  } = useForm<TutorDataTypes>({ mode: "onChange" });
 
-  const onSubmitHandler: SubmitHandler<TutorDataTypes> = (data) =>
+  const [policy, setPolicy] = useState(false);
+  const [policyError, setPolicyError] = useState(false);
+
+  const onSubmitHandler: SubmitHandler<TutorDataTypes> = (data) => {
+    if (!policy) {
+      setPolicyError(true);
+      return;
+    }
     console.log(data);
-
+  };
   return (
     <>
       <p className="text-5xl my-10 text-center">회원가입</p>
@@ -132,28 +139,12 @@ export default function Tutor() {
             </div>
           </div>
 
-          {/* 휴대전화 인증*/}
-          <div>
-            <p>휴대전화 인증</p>
-            <div className="flex gap-x-4 my-2">
-              <input
-                type="text"
-                placeholder="전화번호 입력"
-                className="border-2 border-[#d9d9d9] rounded-lg h-[60px] px-4 w-[400px] shadow-md"
-              />
-              <button className="border-2 border-[#d9d9d9] rounded-lg h-[60px] px-4 w-[200px] shadow-md">
-                인증번호 받기
-              </button>
-            </div>
-            <input
-              type="text"
-              placeholder="인증번호 입력"
-              className="border-2 border-[#d9d9d9] rounded-lg h-[60px] px-4 w-[400px] shadow-md"
-            />
-          </div>
-
           {/* 약관 동의 */}
-          <AgreeOfTos register={register} error={errors} />
+          <AgreeOfTos
+            policy={policy}
+            setPolicy={setPolicy}
+            policyError={policyError}
+          />
           <SubmitButton title="가입하기" />
         </form>
       </div>
