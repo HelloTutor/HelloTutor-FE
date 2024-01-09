@@ -113,7 +113,10 @@ export default function Question() {
             })}
           </ul>
 
-          <div className='flex justify-center mt-10'>페이지네이션</div>
+          <div className='flex justify-center mt-10'>
+            {/* 임시 */}
+            {'<'}&nbsp;&nbsp; 1 2 3 4 5 &nbsp;&nbsp;{' > >>'}
+          </div>
         </div>
       </section>
     </div>
