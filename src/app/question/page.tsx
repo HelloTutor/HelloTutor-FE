@@ -1,6 +1,8 @@
 'use client';
 
+import Button from '@/components/Button';
 import DashboardNavBar from '@/components/DashboardNavBar';
+import HorizontalLine from '@/components/HorizontalLine';
 import SearchForm from '@/components/SearchForm';
 import SubjectSideBar from '@/components/SubjectSideBar';
 import Link from 'next/link';
@@ -34,24 +36,7 @@ const sortNavigationItems = [
   {
     navTitle: '최신순',
     fontSize: 'text-lg',
-    navi() {
-      console.log('최신순');
-    },
-  },
-  {
-    navTitle: '오래된순',
-    fontSize: 'text-lg',
-
-    navi() {
-      console.log('오래된순');
-    },
-  },
-  {
-    navTitle: '조회순',
-    fontSize: 'text-lg',
-    navi() {
-      console.log('조회순');
-    },
+    navi() {},
   },
 ];
 
@@ -86,38 +71,49 @@ export default function Question() {
       <SubjectSideBar title='질문하기' />
 
       {/* content right */}
-      <section className='flex flex-col ml-[69px] mt-20'>
+      <section className='flex flex-col ml-[69px] mt-20 w-full gap-5'>
         <DashboardNavBar navItem={statusNavigationItems} />
+        <div className='mt-1.5' />
         <SearchForm />
-        <div className='flex'>
+        <div className='flex items-center border-b-4 border-gray-300 border-solid pb-1.5'>
           <DashboardNavBar navItem={sortNavigationItems} />
           <Link href='/question/write-content'>
-            <span>글쓰기</span>
+            <Button title='글쓰기' type='button' />
           </Link>
         </div>
-        <div>
+
+        <div className='mt-6'>
+          <HorizontalLine />
           <ul>
             {questionList.map((post) => {
               return (
-                <li key={post.id}>
-                  <div>
-                    <div>{post.status}</div>
+                <li key={post.id} className='flex flex-col gap-2 pt-2 pb-2'>
+                  <div className='flex'>
+                    <div className='flex justify-center w-20 mr-20'>
+                      <div className='rounded-lg bg-gray-300 py-1 px-3'>
+                        {post.status ? '해결' : '미해결'}
+                      </div>
+                    </div>
                     <p>{post.title}</p>
                   </div>
                   <div dangerouslySetInnerHTML={{ __html: post.desc }} />
-                  <div>
+                  <div className='flex justify-between'>
                     <div>
-                      <span>{post.name}</span>/<span>{post.time}</span>
+                      <span>{`이름: ${post.name}`}</span>/
+                      <span>{`${post.time}시간 전`}</span>
                     </div>
                     <div>
-                      <span>{post.hits}</span>/<span>{post.numOfComments}</span>
+                      <span>{`조회 수: ${post.hits}`}</span>/
+                      <span>{`댓글 수: ${post.numOfComments}`}</span>
                     </div>
                   </div>
+                  <HorizontalLine />
                 </li>
               );
             })}
           </ul>
-          <div>페이지네이션</div>
+
+          <div className='flex justify-center mt-10'>페이지네이션</div>
         </div>
       </section>
     </div>

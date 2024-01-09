@@ -12,7 +12,7 @@ export default function DashboardNavBar<T extends NavItem>({
   navItem: T[];
 }) {
   return (
-    <ul className='flex gap-8'>
+    <ul className='flex gap-8 flex-1 items-center'>
       {navItem.map((item, index) => {
         return (
           <li key={index}>
