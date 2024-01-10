@@ -19,13 +19,12 @@ export default function LikedTutor() {
                 <div className="ml-3">
                   <p className="font-semibold">닉네임</p>
                   <p className=" overflow-hidden text-ellipsis   line-clamp-2 break-words slick-vertical">
-                    {/* 자기소개는 2줄이 넘지 않음*/}
+                    {/* 자기소개는 2줄이 넘게 표시 되지 않음*/}
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Repellendus, voluptatum? Lorem ipsum dolor sit amet
                     consectetur adipisicing elit. Repellendus, voluptatum?
                     consectetur adipisicing elit. Repellendus, voluptatum?
                     consectetur adipisicing elit. Repellendus, voluptatum?
-                    {/* 이것보다 길면 text-s */}
                   </p>
                   <p className=" text-gray-500">
                     별점(리뷰 수) / 채택 수 / 경력
