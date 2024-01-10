@@ -1,7 +1,8 @@
 "use client";
-import AccountSideMenu from "@/components/AccountSideMenu";
+import AccountSideMenu from "@/app/my-page/components/AccountSideMenu";
 import SubmitButton from "@/components/SubmitButton";
 import { Controller, useForm } from "react-hook-form";
+import MyPageTitle from "./components/MyPageTitle";
 
 interface MyAccountTypes {
   nickname: string;
@@ -17,7 +18,7 @@ export default function MyAccountPage() {
       <AccountSideMenu />
       {/* right side */}
       <section className="w-full ">
-        <p className="ht-md-title block ml-20 mt-10">계정설정</p>
+        <MyPageTitle title="계정설정" />
         <div className="relative flex flex-col items-center gap-y-8">
           <div className="rounded-full w-[100px] h-[100px] bg-black" />
           {/* 닉네임, 이메일, 비밀번호, 휴대전화 번호 변경 form */}
