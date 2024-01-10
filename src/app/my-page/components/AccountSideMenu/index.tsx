@@ -27,13 +27,25 @@ export default function AccountSideMenu() {
       </div>
       {/* 메뉴 리스트 */}
       <div className="flex flex-col gap-y-4 mt-[48px]">
-        <MenuList title="계정설정" link="/my-account" linkName="계정설정" />
+        <MenuList title="마이페이지" link="/my-page" linkName="계정설정" />
         <hr className="border-black" />
-        <MenuList title="질문하기" link="/" linkName="작성글 / 채팅내역" />
+        <MenuList
+          title="질문하기"
+          link="/my-page/my-question"
+          linkName="작성글 / 채팅내역"
+        />
         <hr className="border-black" />
-        <MenuList title="tutor 찾기" link="/" linkName="찜한 tutor" />
+        <MenuList
+          title="tutor 찾기"
+          link="/my-page/liked-tutor"
+          linkName="찜한 tutor"
+        />
         <hr className="border-black" />
-        <MenuList title="자유게시판" link="/" linkName="작성글 / 댓글" />
+        <MenuList
+          title="자유게시판"
+          link="/my-page/my-dashboard"
+          linkName="작성글 / 댓글"
+        />
       </div>
     </div>
   );
