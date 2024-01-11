@@ -3,11 +3,11 @@ import HorizontalLine from '@/components/HorizontalLine';
 
 type Props = {
   params: {
-    questionSlug: string;
+    dashboradSlug: string;
   };
 };
 
-export default function QuestionDetail({ params }: Props) {
+export default function DashboardDetail({ params }: Props) {
   let data = {
     id: 1,
     status: false,
@@ -18,6 +18,7 @@ export default function QuestionDetail({ params }: Props) {
     name: '김민수',
     time: '2024-01-04 20:20:59',
     hits: 20,
+    like: 5,
     numOfComments: 2,
     comments: [
       {
@@ -28,6 +29,7 @@ export default function QuestionDetail({ params }: Props) {
         role: 'tutor',
         subject: '수학',
         desc: '댓글내용..',
+        like: 5,
         date: '2022-02-01',
       },
       {
@@ -38,14 +40,14 @@ export default function QuestionDetail({ params }: Props) {
         role: 'tutor',
         subject: '수학',
         desc: '댓글내용..',
+        like: 5,
         date: '2022-02-01',
       },
     ],
   };
   const tmpApi = () => {
-    // params.questionSlug에 대한 요청
+    // params.dashboradSlug 대한 요청
   };
-
   return (
     <div>
       <div className='flex justify-between'>
@@ -58,10 +60,13 @@ export default function QuestionDetail({ params }: Props) {
           <span>{data.name}</span>
         </div>
       </div>
-      <p
-        dangerouslySetInnerHTML={{ __html: data.desc }}
-        className='text-3xl font-medium mb-5 mt-5 w-full border border-solid border-black p-5'
-      />
+      <div className='mb-5 mt-5 w-full border border-solid border-black p-5'>
+        <p
+          dangerouslySetInnerHTML={{ __html: data.desc }}
+          className='text-3xl font-medium'
+        />
+        <div className='w-full text-center mt-10'>좋아요표시 {data.like}</div>
+      </div>
       <input
         placeholder='댓글을 남겨보세요.'
         className='flex-1 border border-solid border-gray-300 w-full mb-5 p-2'
@@ -82,7 +87,8 @@ export default function QuestionDetail({ params }: Props) {
                     <Button title='프로필보기' type='button'></Button>
                   </div>
                   <p className='mb-5'>{comment.desc}</p>
-                  <div>{comment.date}</div>
+                  <span>{comment.date}</span> /{' '}
+                  <span>{`좋아요: ${comment.like}`}</span>
                 </div>
               </div>
               <HorizontalLine />

@@ -47,7 +47,7 @@ const questionList = [
     status: false,
     title: '제목 1 입니다...',
     desc: '<p>본문 1 입니다..</p>',
-    name: '이선균',
+    name: '김민수',
     time: '2024-01-04 20:20:59',
     hits: 20,
     numOfComments: 2,
@@ -57,7 +57,7 @@ const questionList = [
     status: true,
     title: '제목 2 입니다...',
     desc: '<p>본문 2 입니다..</p>',
-    name: '아이유',
+    name: '정민수',
     time: '2024-01-04 20:20:59',
     hits: 10,
     numOfComments: 1,
@@ -100,7 +100,7 @@ export default function Question() {
                       </div>
                       <p>{post.title}</p>
                     </div>
-                    <div dangerouslySetInnerHTML={{ __html: post.desc }} />
+                    {/* <div dangerouslySetInnerHTML={{ __html: post.desc }} /> */}
                     <div className='flex justify-between'>
                       <div>
                         <span>{`이름: ${post.name}`}</span>/

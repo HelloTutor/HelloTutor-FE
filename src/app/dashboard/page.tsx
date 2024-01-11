@@ -29,7 +29,7 @@ const dashboardList = [
   {
     id: 1,
     title: '제목 1 입니다...',
-    name: '이선균',
+    name: '신민수',
     time: '2024-01-04 20:20:59',
     hits: 20,
     numOfComments: 2,
@@ -37,7 +37,7 @@ const dashboardList = [
   {
     id: 2,
     title: '제목 2 입니다...',
-    name: '아이유',
+    name: '정민수',
     time: '2024-01-04 20:20:59',
     hits: 10,
     numOfComments: 1,
@@ -60,18 +60,23 @@ export default function Dashboard() {
           {dashboardList.map((post) => {
             return (
               <li key={post.id} className='flex flex-col gap-2 pt-2 pb-2'>
-                <p>{post.title}</p>
-                <div className='flex justify-between'>
-                  <div>
-                    <span>{`이름: ${post.name}`}</span>/
-                    <span>{`${post.time}시간 전`}</span>
+                <Link
+                  href={`/dashboard/${post.id}`}
+                  className='flex flex-col gap-2 pt-2 pb-2'
+                >
+                  <p>{post.title}</p>
+                  <div className='flex justify-between'>
+                    <div>
+                      <span>{`이름: ${post.name}`}</span>/
+                      <span>{`${post.time}시간 전`}</span>
+                    </div>
+                    <div>
+                      <span>{`조회 수: ${post.hits}`}</span>/
+                      <span>{`댓글 수: ${post.numOfComments}`}</span>
+                    </div>
                   </div>
-                  <div>
-                    <span>{`조회 수: ${post.hits}`}</span>/
-                    <span>{`댓글 수: ${post.numOfComments}`}</span>
-                  </div>
-                </div>
-                <HorizontalLine />
+                  <HorizontalLine />
+                </Link>
               </li>
             );
           })}
