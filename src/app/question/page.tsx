@@ -87,26 +87,31 @@ export default function Question() {
           <ul>
             {questionList.map((post) => {
               return (
-                <li key={post.id} className='flex flex-col gap-2 pt-2 pb-2'>
-                  <div className='flex'>
-                    <div className='flex justify-center w-20 mr-20'>
-                      <div className='rounded-lg bg-gray-300 py-1 px-3'>
-                        {post.status ? '해결' : '미해결'}
+                <li key={post.id} className='pt-2 pb-2'>
+                  <Link
+                    href={`/question/${post.id}`}
+                    className='flex flex-col gap-2 pt-2 pb-2'
+                  >
+                    <div className='flex'>
+                      <div className='flex justify-center w-20 mr-20'>
+                        <div className='rounded-lg bg-gray-300 py-1 px-3'>
+                          {post.status ? '해결' : '미해결'}
+                        </div>
+                      </div>
+                      <p>{post.title}</p>
+                    </div>
+                    <div dangerouslySetInnerHTML={{ __html: post.desc }} />
+                    <div className='flex justify-between'>
+                      <div>
+                        <span>{`이름: ${post.name}`}</span>/
+                        <span>{`${post.time}시간 전`}</span>
+                      </div>
+                      <div>
+                        <span>{`조회 수: ${post.hits}`}</span>/
+                        <span>{`댓글 수: ${post.numOfComments}`}</span>
                       </div>
                     </div>
-                    <p>{post.title}</p>
-                  </div>
-                  <div dangerouslySetInnerHTML={{ __html: post.desc }} />
-                  <div className='flex justify-between'>
-                    <div>
-                      <span>{`이름: ${post.name}`}</span>/
-                      <span>{`${post.time}시간 전`}</span>
-                    </div>
-                    <div>
-                      <span>{`조회 수: ${post.hits}`}</span>/
-                      <span>{`댓글 수: ${post.numOfComments}`}</span>
-                    </div>
-                  </div>
+                  </Link>
                   <HorizontalLine />
                 </li>
               );
