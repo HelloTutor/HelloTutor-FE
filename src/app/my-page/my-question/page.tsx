@@ -2,6 +2,7 @@
 import AccountSideMenu from "@/app/my-page/components/AccountSideMenu";
 import MyPageTitle from "../components/MyPageTitle";
 import { useState } from "react";
+import SelectTab from "../components/SelectTab";
 
 export default function MyQuestion() {
   const [tab, setTab] = useState(0);
@@ -14,13 +15,13 @@ export default function MyQuestion() {
           {/* tab */}
           <div className="flex gap-x-2">
             {["작성글", "채팅내역"].map((item, index) => (
-              <p
-                className={`${tab === index && "font-semibold"} w-[56px]`}
-                onClick={() => setTab(index)}
-                key={index}
-              >
-                {item}
-              </p>
+              <SelectTab
+                index={index}
+                item={item}
+                tab={tab}
+                setTab={setTab}
+                key={item}
+              />
             ))}
           </div>
           <hr />
@@ -34,7 +35,7 @@ export default function MyQuestion() {
             <div className="flex flex-col gap-y-5">
               {[1, 2, 3, 4, 5].map((item, index) => (
                 <div
-                  className="rounded-sm w-[700px] hover:shadow-sm mx-auto"
+                  className="rounded-sm w-[700px] mx-auto hover:cursor-pointer"
                   key={index}
                 >
                   <div className="flex items-center">
