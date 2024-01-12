@@ -7,7 +7,7 @@ export default function Signup() {
   ];
 
   return (
-    <div className="text-center mt-[160px]">
+    <div className="text-center mt-[160px] mb-[320px]">
       <p className="text-5xl mb-20">회원가입</p>
       <div className="flex gap-10 justify-center">
         {signupType.map((item) => (

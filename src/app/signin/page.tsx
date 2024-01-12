@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Signin() {
   return (
     <>
-      <div className="max-w-[970px] mx-auto mt-[160px]">
+      <div className="max-w-[970px] mx-auto mt-[160px] mb-[320px]">
         {/* 로그인 form */}
         <form className="flex flex-col gap-y-6 max-w-[400px] mx-auto">
           <div>
@@ -42,12 +42,11 @@ export default function Signin() {
             <span>회원가입</span>
           </Link>
         </div>
-      </div>
-
-      {/* 구글 간편 로그인*/}
-      <div>
-        <div className="mt-12 text-center">
-          <SubmitButton title="구글로 가입하기" />
+        {/* 구글 간편 로그인*/}
+        <div>
+          <div className="mt-12 text-center">
+            <SubmitButton title="구글로 가입하기" />
+          </div>
         </div>
       </div>
     </>
