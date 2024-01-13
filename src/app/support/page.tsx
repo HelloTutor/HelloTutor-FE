@@ -25,10 +25,6 @@ export default function Support() {
   });
   const [isFileUploaded, setIsFileUploaded] = useState(false);
 
-  useEffect(() => {
-    console.log(formState);
-  }, [formState]);
-
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
