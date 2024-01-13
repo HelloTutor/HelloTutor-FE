@@ -1,8 +1,9 @@
 'use client';
 
 import FileUpload from '@/components/FileUpload';
+import SubmitButton from '@/components/SubmitButton';
 import TextField from '@/components/TextField';
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type FormState = {
   email: string;
@@ -45,7 +46,7 @@ export default function Support() {
   };
 
   return (
-    <>
+    <form onSubmit={() => {}} className='mt-10'>
       <TextField
         title='이메일 주소'
         placeholder='ex) helloTutor@gmail.com'
@@ -94,6 +95,10 @@ export default function Support() {
         isFileUploaded={isFileUploaded}
         setIsFileUploaded={setIsFileUploaded}
       />
-    </>
+
+      <div className='flex justify-center mt-20'>
+        <SubmitButton title='제출' />
+      </div>
+    </form>
   );
 }
