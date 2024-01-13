@@ -1,15 +1,22 @@
-'use client';
+import { Dispatch, SetStateAction, useRef, useState } from 'react';
 
-import { useRef, useState } from 'react';
-
-export default function FileUpload() {
+type Props = {
+  fileName: string;
+  isFileUploaded: boolean;
+  setIsFileUploaded: Dispatch<SetStateAction<boolean>>;
+  setFileName: (file: File | null) => void;
+};
+export default function FileUpload({
+  fileName,
+  setFileName,
+  isFileUploaded,
+  setIsFileUploaded,
+}: Props) {
   const fileInput = useRef<HTMLInputElement>(null);
-  const [fileName, setFileName] = useState('');
-  const [isFileUploaded, setIsFileUploaded] = useState(false);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      setFileName(e.target.files[0].name);
+      setFileName(e.target.files[0]);
       setIsFileUploaded(true);
     }
   };

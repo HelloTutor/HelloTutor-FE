@@ -1,21 +1,23 @@
-'use client';
-
-import { useState } from 'react';
-
 type Props = {
   title: string;
   type?: string;
+  value: string;
+  name: string;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   placeholder: string;
   required: boolean;
 };
 export default function TextField({
   title,
   type = 'text',
+  name,
+  value,
+  onChange,
   placeholder,
   required,
 }: Props) {
-  const [value, setValue] = useState('');
-
   return (
     <div className='flex flex-col mb-8'>
       <label htmlFor={title} className='mb-2'>
@@ -29,7 +31,8 @@ export default function TextField({
             id={title}
             placeholder={placeholder}
             rows={10}
-            onChange={(e) => setValue(e.target.value)}
+            name={name}
+            onChange={onChange}
             className='flex-1 border border-solid rounded border-gray-300 p-2'
           />
           <span className='text-gray-400 mt-1 text-sm'>
@@ -43,7 +46,8 @@ export default function TextField({
           type={type}
           value={value}
           placeholder={placeholder}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={onChange}
+          name={name}
         />
       )}
     </div>
