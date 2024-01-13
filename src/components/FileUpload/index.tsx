@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useRef, useState } from 'react';
 
 type Props = {
-  fileName: string;
+  fileName: string | undefined;
   isFileUploaded: boolean;
   setIsFileUploaded: Dispatch<SetStateAction<boolean>>;
   setFileName: (file: File | null) => void;

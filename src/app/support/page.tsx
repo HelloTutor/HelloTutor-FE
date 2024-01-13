@@ -86,7 +86,7 @@ export default function Support() {
       />
 
       <FileUpload
-        fileName={formState.title}
+        fileName={formState.file?.name}
         setFileName={handleFileChange}
         isFileUploaded={isFileUploaded}
         setIsFileUploaded={setIsFileUploaded}
