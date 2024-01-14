@@ -2,7 +2,7 @@ import Pagination from 'react-js-pagination';
 
 export default function Pagenation() {
   return (
-    <div className='flex justify-center'>
+    <div>
       <Pagination
         // 현재 페이지
         activePage={1}
