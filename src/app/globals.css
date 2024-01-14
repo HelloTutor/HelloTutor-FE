@@ -20,6 +20,6 @@
   font-weight: bold;
 }
 
-.my-custom-class {
+.text-2xl-important {
   @apply text-2xl !important;
 }

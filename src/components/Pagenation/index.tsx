@@ -14,13 +14,13 @@ export default function Pagenation() {
         pageRangeDisplayed={5}
         onChange={() => {}}
         // <ul> 태그 의 클래스 이름
-        innerClass='flex justify-center item items-center'
+        innerClass='flex justify-center items-center'
         // <li> 태그 의 기본 클래스 (배경 입힐시 bg-gray-500 hover:bg-gray-700 사용)
-        itemClass='px-2 text-gray-500 hover:text-gray-600 rounded text-lg'
+        itemClass='px-2 py-1 text-gray-500 hover:text-gray-600 rounded text-lg '
         // <li> 첫 번째 태그 의 클래스
-        itemClassFirst='my-custom-class'
+        itemClassFirst='text-2xl-important'
         // 마지막 <li> 태그 의 클래스
-        itemClassLast='my-custom-class'
+        itemClassLast='text-2xl-important'
         // <li> 활성 태그 의 클래스 이름
         activeClass='text-gray-800'
         // 태그 의 기본 클래스
