@@ -13,12 +13,18 @@ export default function Pagenation() {
         // 표시할 총 페이지 수
         pageRangeDisplayed={5}
         onChange={() => {}}
-        // 페이징 버튼 내부에 적용될 CSS 클래스를 지정
-        innerClass='flex justify-center'
-        // 페이지 아이템에 적용될 CSS 클래스 지정 (배경 입힐시 bg-gray-500 hover:bg-gray-700 사용)
-        itemClass='px-2 text-black hover:text-gray-600 rounded'
-        // 링크에 적용될 CSS 클래스 지정
-        linkClass='text-lg'
+        // <ul> 태그 의 클래스 이름
+        innerClass='flex justify-center item items-center'
+        // <li> 태그 의 기본 클래스 (배경 입힐시 bg-gray-500 hover:bg-gray-700 사용)
+        itemClass='px-2 text-gray-500 hover:text-gray-600 rounded text-lg'
+        // <li> 첫 번째 태그 의 클래스
+        itemClassFirst='my-custom-class'
+        // 마지막 <li> 태그 의 클래스
+        itemClassLast='my-custom-class'
+        // <li> 활성 태그 의 클래스 이름
+        activeClass='text-black'
+        // 태그 의 기본 클래스
+        // linkClass=''
       />
     </div>
   );
