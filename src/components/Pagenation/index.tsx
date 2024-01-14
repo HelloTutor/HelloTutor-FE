@@ -19,7 +19,7 @@ export default function Pagenation() {
         itemClass='px-2 text-black hover:text-gray-600 rounded'
         // 링크에 적용될 CSS 클래스 지정
         linkClass='text-lg'
-      ></Pagination>
+      />
     </div>
   );
 }
