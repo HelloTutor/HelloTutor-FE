@@ -22,7 +22,7 @@ export default function Pagenation() {
         // 마지막 <li> 태그 의 클래스
         itemClassLast='my-custom-class'
         // <li> 활성 태그 의 클래스 이름
-        activeClass='text-black'
+        activeClass='text-gray-800'
         // 태그 의 기본 클래스
         // linkClass=''
       />
