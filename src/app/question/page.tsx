@@ -3,6 +3,7 @@
 import Button from '@/components/Button';
 import DashboardNavBar from '@/components/DashboardNavBar';
 import HorizontalLine from '@/components/HorizontalLine';
+import Pagenation from '@/components/Pagenation';
 import SearchForm from '@/components/SearchForm';
 import SubjectSideBar from '@/components/SubjectSideBar';
 import Link from 'next/link';
@@ -119,8 +120,7 @@ export default function Question() {
           </ul>
 
           <div className='flex justify-center mt-10'>
-            {/* 임시 */}
-            {'<'}&nbsp;&nbsp; 1 2 3 4 5 &nbsp;&nbsp;{' > >>'}
+            <Pagenation />
           </div>
         </div>
       </section>
