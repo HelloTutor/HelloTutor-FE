@@ -1,18 +1,37 @@
 "use client";
 
 import { subjectArr } from "@/constants/subject";
+import { HeartIcon } from "@heroicons/react/24/solid";
+import { HeartIcon as HeartIconOutline } from "@heroicons/react/24/outline";
+
 import { useState } from "react";
 
 export default function FindTutorPage() {
   const [selectedTab, setSelectedTab] = useState(1);
+  const [isLiked, setIsLiked] = useState(false);
+  const isTutor = false;
+
   return (
     <div className="max-w-[814px] mt-[42px]  flex flex-col gap-y-6 mx-auto">
       <div className="flex items-center justify-between">
         <div className="w-[110px] h-[95px] bg-black" />
-        {/* 학생은 질문하기 버튼, tutor 본인 계정은 프로필 수정하기 */}
-        <button type="button" className="border-2 px-4 py-2 rounded-md ">
-          질문하기
-        </button>
+        {/* 학생은 찜하기 & 채팅하기 버튼, tutor 본인 계정은 프로필 수정하기 */}
+        <div className="flex flex-col gap-y-2 text-center">
+          <button
+            className="flex  items-center"
+            onClick={() => setIsLiked(!isLiked)}
+          >
+            {isLiked ? (
+              <HeartIcon className="w-[30px] mr-2" />
+            ) : (
+              <HeartIconOutline className="w-[30px] mr-2" />
+            )}
+            <p> 찜하기</p>
+          </button>
+          <button type="button" className="border-2 px-4 py-2 rounded-md ">
+            채팅하기
+          </button>
+        </div>
       </div>
       <p className="text-3xl">tutor 이름</p>
       <div className="flex gap-x-5">
@@ -53,13 +72,6 @@ export default function FindTutorPage() {
             className={`${selectedTab === 2 && "font-bold"} w-[31px]`}
           >
             리뷰
-          </button>
-          <button
-            type="button"
-            onClick={() => setSelectedTab(3)}
-            className={`${selectedTab === 3 && "font-bold"} w-[71px]`}
-          >
-            질문게시판
           </button>
         </div>
         <hr className="my-4" />
@@ -112,28 +124,6 @@ export default function FindTutorPage() {
                 </p>
                 <p>2021.08.01</p>
                 <hr className="mt-2" />
-              </div>
-            ))}
-          </>
-        )}
-        {/* 질문게시판 */}
-        {selectedTab === 3 && (
-          <>
-            {[1, 2, 3, 4].map((question) => (
-              <div className="flex flex-col gap-y-3 mb-6" key={question}>
-                <p>질문 제목</p>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quisquam voluptatibus, quibusdam, voluptate, fugiat voluptas
-                  quia reprehenderit voluptatum quos molestiae doloribus
-                  doloremque eligendi? Quisquam voluptatibus, quibusdam,
-                  voluptate, fugiat voluptas quia reprehenderit voluptatum quos
-                  molestiae doloribus doloremque eligendi?
-                </p>
-                <div className="flex justify-between">
-                  <p>닉네임 / 2021.08.01</p>
-                  <p>조회수 / 댓글수</p>
-                </div>
               </div>
             ))}
           </>
