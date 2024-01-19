@@ -1,4 +1,5 @@
 "use client";
+import { signup } from "@/api/auth";
 import AgreeOfTos from "@/components/ArgreeOfTos";
 import SubmitButton from "@/components/SubmitButton";
 import { subjectKoEn } from "@/constants/subject";
@@ -7,10 +8,10 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 export interface TutorDataTypes {
   email: string;
-  password: string;
-  confirm_password: string;
+  pw: string;
+  checkPw: string;
   name: string;
-  subjects: string[];
+  subject: string[];
 }
 
 export default function Tutor() {
@@ -24,13 +25,20 @@ export default function Tutor() {
   const [policy, setPolicy] = useState(false);
   const [policyError, setPolicyError] = useState(false);
 
-  const onSubmitHandler: SubmitHandler<TutorDataTypes> = (data) => {
+  const onSubmitHandler: SubmitHandler<TutorDataTypes> = async (data) => {
     if (!policy) {
       setPolicyError(true);
       return;
     }
-    console.log(data);
+    try {
+      const tutorData = { ...data, role: 1 };
+      const response = await signup(tutorData);
+      console.log(response, "response");
+    } catch (error) {
+      console.log(error, "error");
+    }
   };
+
   return (
     <>
       <p className="text-5xl my-10 text-center">회원가입</p>
@@ -68,7 +76,7 @@ export default function Tutor() {
               type="password"
               placeholder="비밀번호를 입력해주세요."
               className="border-2 border-[#d9d9d9] rounded-lg h-[60px] px-4 w-[400px] shadow-md"
-              {...register("password", {
+              {...register("pw", {
                 required: "비밀번호는 필수 값입니다.",
                 minLength: {
                   value: 8,
@@ -81,7 +89,7 @@ export default function Tutor() {
               })}
             />
             <p className="relative text-red-500 h-[10px]">
-              {errors?.password?.message}
+              {errors?.pw?.message}
             </p>
           </div>
           <div>
@@ -93,17 +101,16 @@ export default function Tutor() {
               type="password"
               placeholder="비밀번호를 다시 입력해주세요."
               className="border-2 border-[#d9d9d9] rounded-lg h-[60px] px-4 w-[400px] shadow-md"
-              {...register("confirm_password", {
+              {...register("checkPw", {
                 required: "비밀번호를 확인해주세요",
                 validate: {
                   checkPassword: (value) =>
-                    value === watch("password") ||
-                    "비밀번호가 일치하지 않습니다.",
+                    value === watch("pw") || "비밀번호가 일치하지 않습니다.",
                 },
               })}
             />
             <p className="relative text-red-500 h-[10px]">
-              {errors?.confirm_password?.message}
+              {errors?.checkPw?.message}
             </p>
           </div>
           <div>
@@ -130,7 +137,7 @@ export default function Tutor() {
                     type="checkbox"
                     id={subject.en}
                     value={subject.en}
-                    {...register("subjects")}
+                    {...register("subject")}
                     className="mr-1"
                   />
                   <label htmlFor={subject.en}>{subject.ko}</label>
