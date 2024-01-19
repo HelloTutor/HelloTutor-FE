@@ -8,13 +8,15 @@ import {
 import AccountSideMenu from "../components/AccountSideMenu";
 import MyPageTitle from "../components/MyPageTitle";
 import { TrashIcon } from "@heroicons/react/24/outline";
+import { subjectKoEn } from "@/constants/subject";
 
 interface TutorInfoTypes {
   introduction: string;
   detailedDescription: string;
-  career: string;
+  career: number;
   experience: { newExperience: string }[];
   servicePrice: string;
+  subject: string[];
 }
 export default function TutorInfo() {
   const { handleSubmit, control, register } = useForm<TutorInfoTypes>({
@@ -64,20 +66,36 @@ export default function TutorInfo() {
             />
           </div>
           <div className="flex flex-col gap-y-2">
+            <label htmlFor="subject">강의 가능 과목</label>
+
+            <div className="flex gap-x-4 justify-center">
+              {subjectKoEn.map((item) => (
+                <div key={item.en}>
+                  <input
+                    type="checkbox"
+                    value={item.en}
+                    key={item.en}
+                    {...register("subject")}
+                    className="mr-1"
+                  />
+                  <label>{item.ko}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-y-2">
             <label htmlFor="careerYear">총 경력 기간</label>
-            <Controller
-              name="career"
-              control={control}
-              render={({ field }) => (
-                <select {...field}>
-                  {[1, 2, 3, 4, 5].map((item) => (
-                    <option value={item} key={item}>
-                      {item}년차
-                    </option>
-                  ))}
-                </select>
-              )}
-            />
+
+            <div className="flex ">
+              <input
+                type="number"
+                defaultValue={"1"}
+                {...register("career")}
+                className="w-10 ml-2"
+              />
+              <label>년차</label>
+            </div>
           </div>
           <div className="flex flex-col gap-y-3">
             <label htmlFor="experience">경력사항</label>
