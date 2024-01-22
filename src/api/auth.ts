@@ -14,3 +14,11 @@ export const signupTutee = async (
     .post("/auth/user/tutee", userParms)
     .then((data) => data.data);
 };
+
+export const signin = async (
+  userParms: Pick<TutorDataTypes, "email" | "pw">
+) => {
+  return await apiClient
+    .post("/auth/login", userParms)
+    .then((data) => data.data);
+};
