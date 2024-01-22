@@ -3,6 +3,7 @@ import { signupTutee } from "@/api/auth";
 import AgreeOfTos from "@/app/signup/components/ArgreeOfTos";
 import SubmitButton from "@/components/SubmitButton";
 import { TutorDataTypes } from "@/typings/user";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -17,7 +18,7 @@ export default function Tutee() {
 
   const [policy, setPolicy] = useState(false);
   const [policyError, setPolicyError] = useState(false);
-
+  const router = useRouter();
   const onSubmitHandler: SubmitHandler<UserDataTypes> = async (data) => {
     if (!policy) {
       setPolicyError(true);
@@ -27,6 +28,7 @@ export default function Tutee() {
       const tuteeData = { ...data, role: 0 };
       await signupTutee(tuteeData);
       alert("회원가입이 완료되었습니다.");
+      router.push("/");
     } catch (error) {
       alert("회원가입에 실패하였습니다.");
     }
