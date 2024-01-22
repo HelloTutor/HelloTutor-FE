@@ -1,5 +1,5 @@
 "use client";
-import AgreeOfTos from "@/components/ArgreeOfTos";
+import AgreeOfTos from "@/app/signup/components/ArgreeOfTos";
 import SubmitButton from "@/components/SubmitButton";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";

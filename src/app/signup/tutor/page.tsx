@@ -1,6 +1,6 @@
 "use client";
 import { signup } from "@/api/auth";
-import AgreeOfTos from "@/components/ArgreeOfTos";
+import AgreeOfTos from "@/app/signup/components/ArgreeOfTos";
 import SubmitButton from "@/components/SubmitButton";
 import { subjectKoEn } from "@/constants/subject";
 import { useRouter } from "next/navigation";
