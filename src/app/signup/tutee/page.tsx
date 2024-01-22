@@ -1,15 +1,12 @@
 "use client";
+import { signupTutee } from "@/api/auth";
 import AgreeOfTos from "@/app/signup/components/ArgreeOfTos";
 import SubmitButton from "@/components/SubmitButton";
+import { TutorDataTypes } from "@/typings/user";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-export interface UserDataTypes {
-  email: string;
-  password: string;
-  confirm_password: string;
-  name: string;
-}
+type UserDataTypes = Omit<TutorDataTypes, "subject">;
 export default function Tutee() {
   const {
     register,
@@ -21,14 +18,18 @@ export default function Tutee() {
   const [policy, setPolicy] = useState(false);
   const [policyError, setPolicyError] = useState(false);
 
-  const onSubmitHandler: SubmitHandler<UserDataTypes> = (data) => {
+  const onSubmitHandler: SubmitHandler<UserDataTypes> = async (data) => {
     if (!policy) {
       setPolicyError(true);
       return;
     }
     try {
-      const userData = { ...data };
-    } catch (error) {}
+      const tuteeData = { ...data, role: 0 };
+      await signupTutee(tuteeData);
+      alert("회원가입이 완료되었습니다.");
+    } catch (error) {
+      alert("회원가입에 실패하였습니다.");
+    }
   };
 
   return (
@@ -69,7 +70,7 @@ export default function Tutee() {
               type="password"
               placeholder="비밀번호를 입력해주세요."
               className="border-2 border-[#d9d9d9] rounded-lg h-[60px] px-4 w-[400px] shadow-md"
-              {...register("password", {
+              {...register("pw", {
                 required: "비밀번호는 필수 값입니다.",
                 minLength: {
                   value: 8,
@@ -82,11 +83,11 @@ export default function Tutee() {
               })}
             />
             <p className="relative text-red-500 h-[10px]">
-              {errors?.password?.message}
+              {errors?.pw?.message}
             </p>
           </div>
           <div>
-            <label className="ml-2 mb-3" htmlFor="confirm_password">
+            <label className="ml-2 mb-3" htmlFor="checkPw">
               비밀번호 확인
             </label>
             <input
@@ -94,17 +95,16 @@ export default function Tutee() {
               type="password"
               placeholder="비밀번호를 다시 입력해주세요."
               className="border-2 border-[#d9d9d9] rounded-lg h-[60px] px-4 w-[400px] shadow-md"
-              {...register("confirm_password", {
+              {...register("checkPw", {
                 required: "비밀번호를 확인해주세요",
                 validate: {
                   checkPassword: (value) =>
-                    value === watch("password") ||
-                    "비밀번호가 일치하지 않습니다.",
+                    value === watch("pw") || "비밀번호가 일치하지 않습니다.",
                 },
               })}
             />
             <p className="relative text-red-500 h-[10px]">
-              {errors?.confirm_password?.message}
+              {errors?.checkPw?.message}
             </p>
           </div>
           <div>
