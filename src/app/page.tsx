@@ -1,8 +1,6 @@
 "use client";
 import { NextArrow, PrevArrow } from "@/components/SlideButton";
 import { subjectArr, subjectKoEn } from "@/constants/subject";
-import { ArrowRightCircleIcon } from "@heroicons/react/24/outline";
-import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import Slider, { Settings } from "react-slick";
 export default function Home() {
