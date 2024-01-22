@@ -1,4 +1,5 @@
 "use client";
+import { NextArrow, PrevArrow } from "@/components/SlideButton";
 import { subjectArr, subjectKoEn } from "@/constants/subject";
 import { ArrowRightCircleIcon } from "@heroicons/react/24/outline";
 import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
@@ -10,16 +11,8 @@ export default function Home() {
     speed: 1000,
     slidesToShow: 5,
     slidesToScroll: 5,
-    prevArrow: (
-      <div>
-        <ArrowLeftCircleIcon className="h-10 w-10 absolute z-10 top-[15px] left-[-25px] text-[#323232]" />
-      </div>
-    ),
-    nextArrow: (
-      <div>
-        <ArrowRightCircleIcon className="h-10 w-10 absolute z-10 top-[15px] right-[-15px] text-[#323232]" />
-      </div>
-    ),
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
   };
 
   return (
