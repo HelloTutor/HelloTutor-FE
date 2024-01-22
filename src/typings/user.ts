@@ -1,4 +1,4 @@
-export interface User {
+export interface TutorDataTypes {
   email: string;
   pw: string;
   checkPw: string;

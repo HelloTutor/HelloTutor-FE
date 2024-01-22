@@ -1,19 +1,12 @@
 "use client";
-import { signup } from "@/api/auth";
+import { signupTutor } from "@/api/auth";
 import AgreeOfTos from "@/app/signup/components/ArgreeOfTos";
 import SubmitButton from "@/components/SubmitButton";
 import { subjectKoEn } from "@/constants/subject";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-
-export interface TutorDataTypes {
-  email: string;
-  pw: string;
-  checkPw: string;
-  name: string;
-  subject: string[];
-}
+import { TutorDataTypes } from "@/typings/user";
 
 export default function Tutor() {
   const {
@@ -34,12 +27,11 @@ export default function Tutor() {
     }
     try {
       const tutorData = { ...data, role: 1 };
-      await signup(tutorData);
+      await signupTutor(tutorData);
       alert("회원가입이 완료되었습니다.");
       router.push("/");
     } catch (error) {
       alert("회원가입에 실패하였습니다.");
-      console.log(error);
     }
   };
 

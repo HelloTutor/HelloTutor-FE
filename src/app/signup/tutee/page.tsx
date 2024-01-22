@@ -10,7 +10,7 @@ export interface UserDataTypes {
   confirm_password: string;
   name: string;
 }
-export default function Student() {
+export default function Tutee() {
   const {
     register,
     handleSubmit,
@@ -26,7 +26,9 @@ export default function Student() {
       setPolicyError(true);
       return;
     }
-    console.log(data);
+    try {
+      const userData = { ...data };
+    } catch (error) {}
   };
 
   return (
