@@ -1,7 +1,9 @@
 "use client";
 import { signin } from "@/api/auth";
 import SubmitButton from "@/components/SubmitButton";
+import { useAuthContext } from "@/context/auth-context";
 import { TutorDataTypes } from "@/typings/user";
+import { decodeToken } from "@/utils/auth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -10,10 +12,21 @@ type SigninDataTypes = Pick<TutorDataTypes, "email" | "pw">;
 export default function Signin() {
   const { register, handleSubmit } = useForm<SigninDataTypes>();
   const router = useRouter();
+
+  const { setUserId } = useAuthContext();
   const onSubmitHandler: SubmitHandler<SigninDataTypes> = async (data) => {
     try {
-      console.log(data);
-      await signin(data);
+      const response = await signin(data);
+      const decodededToken = decodeToken(response.accessToken);
+      const decodedUserId =
+        decodededToken && typeof decodededToken === "object"
+          ? decodededToken.id
+          : null;
+      if (decodedUserId !== null && decodedUserId !== undefined) {
+        setUserId(decodedUserId);
+      } else {
+        console.log("decodedUserId is null");
+      }
       alert("로그인이 완료되었습니다.");
       router.push("/");
     } catch (error) {
