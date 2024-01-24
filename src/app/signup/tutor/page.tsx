@@ -1,18 +1,12 @@
 "use client";
-import { signup } from "@/api/auth";
-import AgreeOfTos from "@/components/ArgreeOfTos";
+import { signupTutor } from "@/api/auth";
+import AgreeOfTos from "@/app/signup/components/ArgreeOfTos";
 import SubmitButton from "@/components/SubmitButton";
 import { subjectKoEn } from "@/constants/subject";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-
-export interface TutorDataTypes {
-  email: string;
-  pw: string;
-  checkPw: string;
-  name: string;
-  subject: string[];
-}
+import { TutorDataTypes } from "@/typings/user";
 
 export default function Tutor() {
   const {
@@ -24,6 +18,7 @@ export default function Tutor() {
 
   const [policy, setPolicy] = useState(false);
   const [policyError, setPolicyError] = useState(false);
+  const router = useRouter();
 
   const onSubmitHandler: SubmitHandler<TutorDataTypes> = async (data) => {
     if (!policy) {
@@ -32,10 +27,11 @@ export default function Tutor() {
     }
     try {
       const tutorData = { ...data, role: 1 };
-      const response = await signup(tutorData);
-      console.log(response, "response");
+      await signupTutor(tutorData);
+      alert("회원가입이 완료되었습니다.");
+      router.push("/");
     } catch (error) {
-      console.log(error, "error");
+      alert("회원가입에 실패하였습니다.");
     }
   };
 

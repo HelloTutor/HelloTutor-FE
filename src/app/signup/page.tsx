@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Signup() {
   const signupType = [
-    { name: "일반회원", link: "/signup/student" },
+    { name: "일반회원", link: "/signup/tutee" },
     { name: "튜터", link: "/signup/tutor" },
   ];
 
