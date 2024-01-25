@@ -1,6 +1,7 @@
 "use client";
 import { NextArrow, PrevArrow } from "@/components/SlideButton";
 import { subjectArr, subjectKoEn } from "@/constants/subject";
+import { useAuthContext } from "@/context/auth-context";
 import Link from "next/link";
 import Slider, { Settings } from "react-slick";
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
   };
+  const { userId } = useAuthContext();
 
   return (
     <div className=" max-w-[970px] mx-auto">
