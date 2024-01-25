@@ -4,7 +4,6 @@ import Link from "next/link";
 
 function NavBar() {
   const { userId, setUserId } = useAuthContext();
-  console.log(userId, "navbar");
   return (
     <nav className="h-[96px] flex justify-between items-center text-xl font-medium">
       {/* menu left */}
