@@ -50,7 +50,7 @@ export default function Dashboard() {
       <SearchForm />
       <div className='flex items-center border-b-4 border-gray-300 border-solid pb-1.5'>
         <DashboardNavBar navItem={sortNavigationItems} />
-        <Link href='/question/write-content'>
+        <Link href='/dashboard/write-content'>
           <Button title='글쓰기' type='button' />
         </Link>
       </div>
