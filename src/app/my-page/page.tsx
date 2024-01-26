@@ -1,18 +1,37 @@
 "use client";
 import AccountSideMenu from "@/app/my-page/components/AccountSideMenu";
 import SubmitButton from "@/components/SubmitButton";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import MyPageTitle from "./components/MyPageTitle";
+import { useAuthContext } from "@/context/auth-context";
+import { resign, updateUserInfo } from "@/api/auth";
+import { MyAccountTypes } from "@/typings/user";
 
-interface MyAccountTypes {
-  nickname: string;
-  email: string;
-  password: string;
-  phone: string;
-}
 export default function MyAccountPage() {
-  const { handleSubmit, control, setValue } = useForm<MyAccountTypes>();
-  const onSubmit = () => console.log("submit");
+  const { handleSubmit, control } = useForm<MyAccountTypes>();
+  const { userId } = useAuthContext();
+  const onSubmit: SubmitHandler<MyAccountTypes> = async (data) => {
+    try {
+      if (!userId) {
+        return;
+      }
+      await updateUserInfo(userId, data);
+      alert("변경이 완료되었습니다.");
+    } catch (error) {
+      alert("변경에 실패하였습니다.");
+    }
+  };
+  const handleResign = async () => {
+    try {
+      if (!userId) {
+        return;
+      }
+      await resign(userId);
+      alert("탈퇴가 완료되었습니다.");
+    } catch (error) {
+      alert(error);
+    }
+  };
   return (
     <div className="flex">
       <AccountSideMenu />
@@ -71,10 +90,7 @@ export default function MyAccountPage() {
             </div>
             <SubmitButton title="변경하기" className="mt-10" />
           </form>
-          <button
-            onClick={() => console.log("탈퇴하기")}
-            className="right-0 underline "
-          >
+          <button onClick={handleResign} className="right-0 underline ">
             탈퇴하기
           </button>
         </div>

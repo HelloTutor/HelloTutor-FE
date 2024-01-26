@@ -1,4 +1,4 @@
-import { TutorDataTypes } from "@/typings/user";
+import { MyAccountTypes, TutorDataTypes } from "@/typings/user";
 import apiClient from "@/utils/api-client";
 
 export const signupTutor = async (userParms: TutorDataTypes) => {
@@ -21,4 +21,36 @@ export const signin = async (
   return await apiClient
     .post("/auth/login", userParms)
     .then((data) => data.data);
+};
+
+export const resign = async (userId: number) => {
+  return await apiClient
+    .delete(`/myPage/${userId}/setting`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+        refresh: `${sessionStorage.getItem("refreshToken")}`,
+      },
+    })
+    .then((data) => data.data)
+    .catch((error) => {
+      throw new Error(error);
+    });
+};
+
+export const updateUserInfo = async (
+  userId: number,
+  userParms: MyAccountTypes
+) => {
+  return await apiClient
+    .put(`/myPage/${userId}/setting`, userParms, {
+      headers: {
+        Authorization: `${sessionStorage.getItem("accessToken")}`,
+        refresh: `${sessionStorage.getItem("refreshToken")}`,
+        withCredentials: true,
+      },
+    })
+    .then((data) => data.data)
+    .catch((error) => {
+      throw new Error(error);
+    });
 };
