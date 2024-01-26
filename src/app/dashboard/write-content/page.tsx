@@ -1,5 +1,6 @@
 'use client';
 
+import { writeContent } from '@/api/auth';
 import QuestionWriting from '@/components/QuestionWriting';
 import { useState } from 'react';
 
