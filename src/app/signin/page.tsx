@@ -18,6 +18,8 @@ export default function Signin() {
     try {
       const response = await signin(data);
       const decodededToken = decodeToken(response.accessToken);
+      sessionStorage.setItem("accessToken", response.accessToken);
+      sessionStorage.setItem("refreshToken", response.refreshToken);
       const decodedUserId =
         decodededToken && typeof decodededToken === "object"
           ? decodededToken.id
