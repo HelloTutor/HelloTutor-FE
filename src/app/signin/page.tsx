@@ -31,8 +31,12 @@ export default function Signin() {
       }
       alert("로그인이 완료되었습니다.");
       router.push("/");
-    } catch (error) {
-      alert("로그인에 실패하였습니다.");
+    } catch (error: any) {
+      if (error.request.status === 404) {
+        alert("존재하지 않는 계정입니다.");
+      } else {
+        alert("로그인에 실패하였습니다.");
+      }
     }
   };
   return (
