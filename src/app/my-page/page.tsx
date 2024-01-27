@@ -6,16 +6,18 @@ import MyPageTitle from "./components/MyPageTitle";
 import { useAuthContext } from "@/context/auth-context";
 import { resign, updateUserInfo } from "@/api/auth";
 import { MyAccountTypes } from "@/typings/user";
+import { useRouter } from "next/navigation";
 
 export default function MyAccountPage() {
   const { handleSubmit, control } = useForm<MyAccountTypes>();
+  const route = useRouter();
   const { userId } = useAuthContext();
   const onSubmit: SubmitHandler<MyAccountTypes> = async (data) => {
     try {
       if (!userId) {
         return;
       }
-      await updateUserInfo(userId, data);
+      await updateUserInfo(data);
       alert("변경이 완료되었습니다.");
     } catch (error) {
       alert("변경에 실패하였습니다.");
@@ -26,8 +28,9 @@ export default function MyAccountPage() {
       if (!userId) {
         return;
       }
-      await resign(userId);
+      await resign();
       alert("탈퇴가 완료되었습니다.");
+      route.push("/");
     } catch (error) {
       alert(error);
     }
