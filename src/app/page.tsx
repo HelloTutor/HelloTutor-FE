@@ -46,9 +46,10 @@ export default function Home() {
         {/* tutor slide */}
         <Slider {...settings} className="max-w-[900px] pt-10 mx-auto relative">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((number) => (
-            <div className=" bg-slate-400 max-w-[168px] h-[168px]" key={number}>
-              <span>{number}</span>
-            </div>
+            <div
+              className=" bg-slate-400 max-w-[168px] h-[168px]"
+              key={number}
+            ></div>
           ))}
         </Slider>
       </div>

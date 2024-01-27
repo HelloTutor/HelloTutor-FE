@@ -32,11 +32,11 @@ export const writeContent = async (
     .then((data) => data.data);
 };
 
-export const resign = async (userId: number) => {
+export const resign = async () => {
   return await apiClient
-    .delete(`/myPage/${userId}/setting`, {
+    .delete(`/myPage/setting`, {
       headers: {
-        Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+        Authorization: `${sessionStorage.getItem("accessToken")}`,
         refresh: `${sessionStorage.getItem("refreshToken")}`,
       },
     })
@@ -46,12 +46,9 @@ export const resign = async (userId: number) => {
     });
 };
 
-export const updateUserInfo = async (
-  userId: number,
-  userParms: MyAccountTypes
-) => {
+export const updateUserInfo = async (userParms: MyAccountTypes) => {
   return await apiClient
-    .put(`/myPage/${userId}/setting`, userParms, {
+    .put(`/myPage/setting`, userParms, {
       headers: {
         Authorization: `${sessionStorage.getItem("accessToken")}`,
         refresh: `${sessionStorage.getItem("refreshToken")}`,
