@@ -36,7 +36,7 @@ export const resign = async () => {
   return await apiClient
     .delete(`/myPage/setting`, {
       headers: {
-        Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+        Authorization: `${sessionStorage.getItem("accessToken")}`,
         refresh: `${sessionStorage.getItem("refreshToken")}`,
       },
     })
