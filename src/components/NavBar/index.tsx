@@ -3,7 +3,12 @@ import { useAuthContext } from "@/context/auth-context";
 import Link from "next/link";
 
 function NavBar() {
-  const { userId, setUserId } = useAuthContext();
+  const { isLoggedIn, setIsLoggedIn } = useAuthContext();
+  const handleLogout = () => {
+    sessionStorage.removeItem("accessToken");
+    setIsLoggedIn(false);
+  };
+
   return (
     <nav className="h-[96px] flex justify-between items-center text-xl font-medium">
       {/* menu left */}
@@ -27,9 +32,9 @@ function NavBar() {
       </div>
       {/* menu right - sign in/up button */}
       <div className="flex gap-x-6 min-w-[146px]">
-        {userId ? (
+        {isLoggedIn ? (
           <>
-            <button type="button" onClick={() => setUserId(null)}>
+            <button type="button" onClick={handleLogout}>
               로그아웃
             </button>
             <Link href="/my-page">마이페이지</Link>

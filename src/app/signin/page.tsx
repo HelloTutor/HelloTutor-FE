@@ -13,7 +13,7 @@ export default function Signin() {
   const { register, handleSubmit } = useForm<SigninDataTypes>();
   const router = useRouter();
 
-  const { setUserId } = useAuthContext();
+  const { setUserId, setIsLoggedIn } = useAuthContext();
   const onSubmitHandler: SubmitHandler<SigninDataTypes> = async (data) => {
     try {
       const response = await signin(data);
@@ -29,6 +29,7 @@ export default function Signin() {
       } else {
         console.log("decodedUserId is null");
       }
+      setIsLoggedIn(true);
       alert("로그인이 완료되었습니다.");
       router.push("/");
     } catch (error: any) {
