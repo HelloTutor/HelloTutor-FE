@@ -1,26 +1,27 @@
-'use client';
+"use client";
 
-import Button from '@/components/Button';
-import DashboardNavBar from '@/components/DashboardNavBar';
-import HorizontalLine from '@/components/HorizontalLine';
-import Pagenation from '@/components/Pagenation';
-import SearchForm from '@/components/SearchForm';
-import Link from 'next/link';
+import Button from "@/components/Button";
+import DashboardNavBar from "@/components/DashboardNavBar";
+import HorizontalLine from "@/components/HorizontalLine";
+import Pagenation from "@/components/Pagenation";
+import SearchForm from "@/components/SearchForm";
+import { useApi } from "@/context/api-context";
+import Link from "next/link";
 
 const sortNavigationItems = [
   {
-    navTitle: '최신순',
-    fontSize: 'text-lg',
+    navTitle: "최신순",
+    fontSize: "text-lg",
     navi() {},
   },
   {
-    navTitle: '좋아요순',
-    fontSize: 'text-lg',
+    navTitle: "좋아요순",
+    fontSize: "text-lg",
     navi() {},
   },
   {
-    navTitle: '댓글 많은 순',
-    fontSize: 'text-lg',
+    navTitle: "댓글 많은 순",
+    fontSize: "text-lg",
     navi() {},
   },
 ];
@@ -29,29 +30,32 @@ const sortNavigationItems = [
 const dashboardList = [
   {
     id: 1,
-    title: '제목 1 입니다...',
-    name: '신민수',
-    time: '2024-01-04 20:20:59',
+    title: "제목 1 입니다...",
+    name: "신민수",
+    time: "2024-01-04 20:20:59",
     hits: 20,
     numOfComments: 2,
   },
   {
     id: 2,
-    title: '제목 2 입니다...',
-    name: '정민수',
-    time: '2024-01-04 20:20:59',
+    title: "제목 2 입니다...",
+    name: "정민수",
+    time: "2024-01-04 20:20:59",
     hits: 10,
     numOfComments: 1,
   },
 ];
 export default function Dashboard() {
+  const { helloTutorAPI } = useApi();
+  helloTutorAPI.search().then((res) => console.log(res));
+
   return (
-    <section className='flex flex-col ml-[69px] mt-20 w-full gap-3'>
+    <section className="flex flex-col ml-[69px] mt-20 w-full gap-3">
       <SearchForm />
-      <div className='flex items-center border-b-4 border-gray-300 border-solid pb-1.5'>
+      <div className="flex items-center border-b-4 border-gray-300 border-solid pb-1.5">
         <DashboardNavBar navItem={sortNavigationItems} />
-        <Link href='/dashboard/write-content'>
-          <Button title='글쓰기' type='button' />
+        <Link href="/dashboard/write-content">
+          <Button title="글쓰기" type="button" />
         </Link>
       </div>
 
@@ -60,13 +64,13 @@ export default function Dashboard() {
         <ul>
           {dashboardList.map((post) => {
             return (
-              <li key={post.id} className='flex flex-col gap-2 pt-2 pb-2'>
+              <li key={post.id} className="flex flex-col gap-2 pt-2 pb-2">
                 <Link
                   href={`/dashboard/${post.id}`}
-                  className='flex flex-col gap-2 pt-2 pb-2'
+                  className="flex flex-col gap-2 pt-2 pb-2"
                 >
                   <p>{post.title}</p>
-                  <div className='flex justify-between'>
+                  <div className="flex justify-between">
                     <div>
                       <span>{`이름: ${post.name}`}</span>/
                       <span>{`${post.time}시간 전`}</span>
@@ -83,7 +87,7 @@ export default function Dashboard() {
           })}
         </ul>
 
-        <div className='flex justify-center mt-10'>
+        <div className="flex justify-center mt-10">
           <Pagenation />
         </div>
       </div>
