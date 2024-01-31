@@ -51,13 +51,13 @@ export default function DashboardDetail({ params }: Props) {
   const tmpApi = () => {
     // params.dashboradSlug 대한 요청
   };
-  const { helloTutorAPI } = useApi();
-  helloTutorAPI
-    .postFree({
-      title: "asdf",
-      content: [{ textContent: "last자유게시판 본문", type: "text" }],
-    })
-    .then((res) => console.log(res));
+  // const { helloTutorAPI } = useApi();
+  // helloTutorAPI
+  //   .postFree({
+  //     title: "asdf",
+  //     content: [{ textContent: "last자유게시판 본문", type: "text" }],
+  //   })
+  //   .then((res) => console.log(res));
   return (
     <div>
       <div className="flex justify-between">

@@ -46,8 +46,8 @@ const dashboardList = [
   },
 ];
 export default function Dashboard() {
-  const { helloTutorAPI } = useApi();
-  helloTutorAPI.search().then((res) => console.log(res));
+  // const { helloTutorAPI } = useApi();
+  // helloTutorAPI.search().then((res) => console.log(res));
 
   return (
     <section className="flex flex-col ml-[69px] mt-20 w-full gap-3">
