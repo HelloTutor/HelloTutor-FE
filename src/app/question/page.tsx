@@ -1,42 +1,42 @@
-'use client';
+"use client";
 
-import Button from '@/components/Button';
-import DashboardNavBar from '@/components/DashboardNavBar';
-import HorizontalLine from '@/components/HorizontalLine';
-import Pagenation from '@/components/Pagenation';
-import SearchForm from '@/components/SearchForm';
-import SubjectSideBar from '@/components/SubjectSideBar';
-import Link from 'next/link';
+import Button from "@/components/Button";
+import DashboardNavBar from "@/components/DashboardNavBar";
+import HorizontalLine from "@/components/HorizontalLine";
+import Pagenation from "@/components/Pagenation";
+import SearchForm from "@/components/SearchForm";
+import SubjectSideBar from "@/components/SubjectSideBar";
+import Link from "next/link";
 
 const statusNavigationItems = [
   {
-    navTitle: '전체',
-    fontSize: 'text-xl',
+    navTitle: "전체",
+    fontSize: "text-xl",
     navi() {
-      console.log('전체');
+      console.log("전체");
     },
   },
   {
-    navTitle: '미해결',
-    fontSize: 'text-xl',
+    navTitle: "미해결",
+    fontSize: "text-xl",
 
     navi() {
-      console.log('미해결');
+      console.log("미해결");
     },
   },
   {
-    navTitle: '해결',
-    fontSize: 'text-xl',
+    navTitle: "해결",
+    fontSize: "text-xl",
     navi() {
-      console.log('해결');
+      console.log("해결");
     },
   },
 ];
 
 const sortNavigationItems = [
   {
-    navTitle: '최신순',
-    fontSize: 'text-lg',
+    navTitle: "최신순",
+    fontSize: "text-lg",
     navi() {},
   },
 ];
@@ -46,20 +46,20 @@ const questionList = [
   {
     id: 1,
     status: false,
-    title: '제목 1 입니다...',
-    desc: '<p>본문 1 입니다..</p>',
-    name: '김민수',
-    time: '2024-01-04 20:20:59',
+    title: "제목 1 입니다...",
+    desc: "<p>본문 1 입니다..</p>",
+    name: "김민수",
+    time: "2024-01-04 20:20:59",
     hits: 20,
     numOfComments: 2,
   },
   {
     id: 2,
     status: true,
-    title: '제목 2 입니다...',
-    desc: '<p>본문 2 입니다..</p>',
-    name: '정민수',
-    time: '2024-01-04 20:20:59',
+    title: "제목 2 입니다...",
+    desc: "<p>본문 2 입니다..</p>",
+    name: "정민수",
+    time: "2024-01-04 20:20:59",
     hits: 10,
     numOfComments: 1,
   },
@@ -67,42 +67,42 @@ const questionList = [
 
 export default function Question() {
   return (
-    <div className='flex'>
+    <div className="flex">
       {/* left side bar */}
-      <SubjectSideBar title='질문하기' />
+      <SubjectSideBar title="질문하기" />
 
       {/* content right */}
-      <section className='flex flex-col ml-[69px] mt-20 w-full gap-5'>
+      <section className="flex flex-col ml-[69px] mt-20 w-full gap-5">
         <DashboardNavBar navItem={statusNavigationItems} />
-        <div className='mt-1.5' />
+        <div className="mt-1.5" />
         <SearchForm />
-        <div className='flex items-center border-b-4 border-gray-300 border-solid pb-1.5'>
+        <div className="flex items-center border-b-4 border-gray-300 border-solid pb-1.5">
           <DashboardNavBar navItem={sortNavigationItems} />
-          <Link href='/question/write-content'>
-            <Button title='글쓰기' type='button' />
+          <Link href="/question/write-content">
+            <Button title="글쓰기" type="button" />
           </Link>
         </div>
 
-        <div className='mt-6'>
+        <div className="mt-6">
           <HorizontalLine />
           <ul>
             {questionList.map((post) => {
               return (
-                <li key={post.id} className='pt-2 pb-2'>
+                <li key={post.id} className="pt-2 pb-2">
                   <Link
                     href={`/question/${post.id}`}
-                    className='flex flex-col gap-2 pt-2 pb-2'
+                    className="flex flex-col gap-2 pt-2 pb-2"
                   >
-                    <div className='flex'>
-                      <div className='flex justify-center w-20 mr-20'>
-                        <div className='rounded-lg bg-gray-300 py-1 px-3'>
-                          {post.status ? '해결' : '미해결'}
+                    <div className="flex">
+                      <div className="flex justify-center w-20 mr-20">
+                        <div className="rounded-lg bg-gray-300 py-1 px-3">
+                          {post.status ? "해결" : "미해결"}
                         </div>
                       </div>
                       <p>{post.title}</p>
                     </div>
                     {/* <div dangerouslySetInnerHTML={{ __html: post.desc }} /> */}
-                    <div className='flex justify-between'>
+                    <div className="flex justify-between">
                       <div>
                         <span>{`이름: ${post.name}`}</span>/
                         <span>{`${post.time}시간 전`}</span>
@@ -119,7 +119,7 @@ export default function Question() {
             })}
           </ul>
 
-          <div className='flex justify-center mt-10'>
+          <div className="flex justify-center mt-10">
             <Pagenation />
           </div>
         </div>
